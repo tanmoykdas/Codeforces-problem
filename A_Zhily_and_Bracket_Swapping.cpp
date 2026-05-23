@@ -7,30 +7,31 @@ void solve() {
   ll n; cin >> n;
   string a, b; cin >> a >> b;
 
-  ll c = 0;
-  bool f = true;
+  for (int i = 0; i < n / 2; i++) {
+    if (a[i] != '(') swap(a[i], b[i]);
+    if (a[n - i - 1] != ')') swap(a[n - i - 1], b[n - i - 1]);
+  }
+
+  bool f = true; int c = 0;
   for (int i = 0; i < n; i++) {
     if (a[i] == '(') c++;
     else c--;
 
     if (c < 0) {
-        f = false;
-        break;
+      f = false; break;
     }
   }
+  if (c) f = false;
+  c = 0;
   for (int i = 0; i < n; i++) {
     if (b[i] == '(') c++;
     else c--;
 
     if (c < 0) {
-        f = false;
-        break;
+      f = false; break;
     }
   }
   if (c) f = false;
-
-  if (a[0] == ')' || b[0] == ')') f = false;
-  if (a[n - 1] == '(' || b[n - 1] == '(') false;
 
   cout << (f ? "YES\n" : "NO\n");
 }
